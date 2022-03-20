@@ -1,0 +1,33 @@
+<div class="profile">
+    <div class="container">
+        <div class="itemB">
+            <h4>Kirjautuneena: {{user.kayttaja_tunnus}}</h4>
+            <h4>Sähköposti: {{user.kayttaja_sahkoposti}}</h4>
+            <h4>Omia ilmoituksia: {{list.length}}kpl</h4>
+        </div>
+        <div class="itemA">
+            <a href="/editUser/{{user.kayttaja_id}}"><button class="button">Muokkaa omia tietoja</button></a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <h2 style="text-align: center;">Omat ilmoitukset</h2>
+        <div>
+            {{#each (reverseList list)}}
+            <div class="ilmoitukset">
+                <div class="ilmoitus" key={{ilmoitus_id}}>
+                    <div>
+                        <h1>{{advertType ilmoitus_laji}}: {{ilmoitus_nimi}}</h1>
+                        <h3>{{ilmoitus_kuvaus}}</h3>
+                        <h5>Ilmoitus jätetty:{{formatDate ilmoitus_paivays}}</h5>
+                        <a href="/editAdvert/{{ilmoitus_id}}"><button class="button">Muokkaa</button></a>
+                        <a href="/deleteAdvert/{{ilmoitus_id}}"><button class="button">Poista</button></a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

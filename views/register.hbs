@@ -1,0 +1,39 @@
+<div>
+    <div class="universalForm">
+        <h1>Rekisteröidy</h1>
+        <form action="/register" method="POST">
+            <div>
+                <label for="userName">Käyttäjätunnus: </label>
+                <input type="text" name="kayttaja_tunnus" id="kayttaja_tunnus" class="form-control"
+                    placeholder="Käyttäjätunnus" />
+            </div>
+
+            <div>
+                <label for="email">Sähköposti: </label>
+                <input type="email" name="kayttaja_sahkoposti" id="kayttaja_sahkoposti" class="form-control"
+                    placeholder="Sähköposti" />
+            </div>
+
+            <div>
+                <label for="password">Salasana: </label>
+                <input type="password" name="kayttaja_salasana" id="kayttaja_salasana" class="form-control"
+                    placeholder="Salasana" />
+            </div>
+
+            <div>
+                <label for="password">Salasana: </label>
+                <input type="password" name="kayttaja_salasana_varmistus" id="kayttaja_salasana_varmistus"
+                    class="form-control" placeholder="Salasana uudelleen" />
+            </div>
+
+
+            <button type="submit" class="button">Rekisteröidy</button>
+
+        </form>
+    </div>
+    <div>
+        {{#if message}}
+        <h4 class="alert">{{message}}</h4>
+        {{/if}}
+    </div>
+</div>

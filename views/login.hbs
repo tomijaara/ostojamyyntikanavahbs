@@ -1,0 +1,32 @@
+<br>
+<div class="universalForm">
+    <form action="/auth/login" method="POST">
+        <div class="container">
+            <div class="two-col-header">
+                <h1>Kirjaudu palveluun</h1>
+            </div>
+            <div class="itemA">
+                <label for="email">Sähköposti: </label>
+            </div>
+            <div class="itemB">
+                <input type="email" class="form-control" id="kayttaja_sahkoposti" name="kayttaja_sahkoposti"
+                    placeholder="Sähköposti" />
+            </div>
+            <div class="itemA">
+                <label for="password">Salasana: </label>
+            </div>
+            <div class="itemB">
+                <input type="password" class="form-control" id="kayttaja_salasana" name="kayttaja_salasana"
+                    placeholder="Salasana" />
+            </div>
+            <div class="loginButton">
+                <button type="submit" class="button">Kirjaudu</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    {{#if message}}
+    <h4 class="alert">{{message}}</h4>
+    {{/if}}
+</div>

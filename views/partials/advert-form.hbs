@@ -1,0 +1,34 @@
+<div class="universalForm">
+    <div class="container">
+        <div class="itemA">
+            <label for="ilmoitus_laji">Ilmoituksen tyyppi: </label>
+        </div>
+        <div class="itemB">
+            <select class="form-control" id="ilmoitus_laji" name="ilmoitus_laji">
+                <option value="1">{{advertType advert.ilmoitus_laji}}</option>
+                {{#if (selectAdvertType advert.ilmoitus_laji)}}
+                <option value="1">Myydään</option>
+                {{else}}
+                <option value="2">Ostetaan</option>
+                {{/if}}
+            </select>
+        </div>
+        <div class="itemA">
+            <label for="ilmoitus_nimi">Ilmoitusksen nimi: </label>
+        </div>
+        <div class="itemB">
+            <input type="text" class="form-control" id="ilmoitus_nimi" name="ilmoitus_nimi"
+                value="{{advert.ilmoitus_nimi}}" placeholder="Lisää ilmoituksen nimi" />
+        </div>
+        <div class="itemA">
+            <label for="ilmoitus_kuvaus">Ilmoituksen kuvaus:</label>
+        </div>
+        <div class="itemB">
+            <textarea class="form-control" id="ilmoitus_kuvaus" name="ilmoitus_kuvaus"
+                placeholder="Lisää kuvaus">{{advert.ilmoitus_kuvaus}}</textarea>
+        </div>
+        <div class="editAdvertButton">
+            <button type="submit" class="button">Tallenna</button>
+        </div>
+    </div>
+</div>

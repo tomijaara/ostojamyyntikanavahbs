@@ -1,0 +1,24 @@
+<div class="searchBar">
+    <form action="/" method="POST">
+        <div class="container-search">
+
+            <div class="itemC">
+                <label for="searchAdvert">Hae ilmoituksista: </label>
+            </div>
+            <div class="itemD">
+                <input type="text" id="searchAdvert" name="searchAdvert" placeholder="Kirjoita hakusana" />
+            </div>
+            <div class="itemB">
+                {{#if (isEmpty searchAdvert)}}
+                <button type="submit" class="button">Hae</button><button type="submit" class="button">Tyhjennä</button>
+                {{else}}
+                <button type="submit" class="button">Hae</button>
+                {{/if}}
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    {{> list-adverts}}
+</div>
