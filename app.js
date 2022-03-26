@@ -7,6 +7,7 @@ import pages from './routes/page.routes.js';
 import register from './routes/register.routes.js';
 import auth from './routes/auth.routes.js';
 import hbsHelpers from './helpers/handlebars-helpers.js';
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -19,9 +20,11 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+
+app.use(express.static('upload'));
 app.use(express.static('public'));
 
-// Templating engine
+
 const hbs = create({ 
     extname: '.hbs',
     helpers: hbsHelpers
@@ -36,6 +39,8 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 
 app.use(cookieParser());
+
+app.use(fileUpload());
 
 app.use('/', pages);
 app.use('/register', register);
