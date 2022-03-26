@@ -1,37 +1,22 @@
 import db from '../app.js';
 import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
-import fileUpload from 'express-fileupload';
 
-
-let ilmoitusKuva;
+let sampleFile;
 let uploadPath;
 
-
-
-
-
 const newAdvert = async (req, res, next) => {
-    console.log(req.files);
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-    }
-
+    
     // name of the input is sampleFile
-    ilmoitusKuva = req.files.ilmoitusKuva;
-    uploadPath = __dirname + '/upload/' + ilmoitusKuva.name;
+    sampleFile = req.body.sampleFile;
+    uploadPath = __dirname + '/upload/' + sampleFile.name;
 
-    console.log(ilmoitusKuva);
-
-
-
-
-    const { ilmoitus_laji, ilmoitus_nimi, ilmoitus_kuvaus, ilmoitusKuva } = req.body;
+    const { ilmoitus_laji, ilmoitus_nimi, ilmoitus_kuvaus } = req.body;
     const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.JWT_SECRET
     );
-    ilmoitusKuva.mv(uploadPath, function (err) {
+    sampleFile.mv(uploadPath, function (err) {
         if (err) return res.status(500).send(err);
 
         db.query(
@@ -40,8 +25,8 @@ const newAdvert = async (req, res, next) => {
                 ilmoitus_laji,
                 ilmoitus_nimi,
                 ilmoitus_kuvaus,
-                ilmoitusKuva,
                 ilmoitus_paivays: new Date(Date.now()),
+                ilmoitus_kuva: sampleFile,
                 ilmoittaja_id: decoded.id,
             },
             (error, results) => {
