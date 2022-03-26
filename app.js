@@ -21,6 +21,7 @@ const db = mysql.createConnection({
 
 app.use(express.static('public'));
 
+// Templating engine
 const hbs = create({ 
     extname: '.hbs',
     helpers: hbsHelpers
