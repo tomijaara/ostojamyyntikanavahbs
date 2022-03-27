@@ -8,6 +8,7 @@ import newAdvert, {
     deleteAdvert
 } from '../controllers/advert.controller.js';
 import { listUsers } from '../controllers/user.controller.js';
+import upload from '../upload.js';
 
 
 
@@ -46,7 +47,7 @@ routes.get('/newAdvert', isLoggedIn, (req, res) => {
     });
 });
 
-routes.post('/newAdvert', [isLoggedIn, newAdvert], (req, res) => {
+routes.post('/newAdvert', upload, [isLoggedIn, newAdvert], (req, res) => {
     res.render('new-advert', {
         user: req.user
     });
