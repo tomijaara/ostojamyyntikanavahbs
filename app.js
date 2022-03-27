@@ -8,6 +8,21 @@ import register from './routes/register.routes.js';
 import auth from './routes/auth.routes.js';
 import hbsHelpers from './helpers/handlebars-helpers.js';
 import fileUpload from 'express-fileupload';
+import multer from 'multer'
+import path from 'path';
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'upload');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+
+});
+
+const upload = multer({ storage: storage });
 
 dotenv.config();
 
@@ -42,7 +57,7 @@ app.use(cookieParser());
 
 app.use(fileUpload());
 
-app.use('/', pages);
+app.use('/', upload.single('sampleFile'), pages);
 app.use('/register', register);
 app.use('/auth', auth);
 
