@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
 
 const newAdvert = async (req, res, next) => {
-    console.log(req.file.filename);
     const { ilmoitus_laji, ilmoitus_nimi, ilmoitus_kuvaus } = req.body;
     const ilmoitus_kuva = req.file.filename;
     const decoded = await promisify(jwt.verify)(
