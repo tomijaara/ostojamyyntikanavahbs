@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
 
 const newAdvert = async (req, res, next) => {
-    console.log(req.file);
+    console.log(req.file.filename);
     const { ilmoitus_laji, ilmoitus_nimi, ilmoitus_kuvaus } = req.body;
+    const ilmoitus_kuva = req.file.filename;
     const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.JWT_SECRET
@@ -17,6 +18,7 @@ const newAdvert = async (req, res, next) => {
             ilmoitus_nimi,
             ilmoitus_kuvaus,
             ilmoitus_paivays: new Date(Date.now()),
+            ilmoitus_kuva,
             ilmoittaja_id: decoded.id
         },
         (error, results) => {
