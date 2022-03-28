@@ -5,17 +5,17 @@
         <div class="ilmoitus" key={{ilmoitus_id}}>
             <div>
                 <h1>{{advertType ilmoitus_laji}}: {{ilmoitus_nimi}} </h1>
-                <h3>{{ilmoitus_kuvaus}}</h3>
             </div>
-            <div>
-                
+            <div class="itemB">
                 <img src={{ilmoitus_kuva}} width="200" height="200">
+            </div>
+            <div class="itemA">
+                <h3>{{ilmoitus_kuvaus}}</h3>
             </div>
             <div class="container-advertBottom">
                 <div class="itemB">
                     <h5>Ilmoittaja: {{getUser ../users ilmoittaja_id}}</h5>
                 </div>
-
                 <div class="itemA">
                     <h5>Ilmoitus jätetty: {{formatDate ilmoitus_paivays}}</h5>
                 </div>
